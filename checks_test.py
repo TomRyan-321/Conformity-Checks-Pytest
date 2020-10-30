@@ -1,5 +1,6 @@
-import requests
 import os
+import pytest
+import requests
 
 # Conformity Region, API Key & Target Account(s) variables
 CC_REGION = os.environ.get("CC_REGION", "us-west-2")
