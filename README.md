@@ -11,7 +11,7 @@ pip3 install -r requirements.txt
 ## Usage
 
 1. Export environment variables relevant to your Cloud Conformity Account `CC_REGION`, `CC_APIKEY`, `CC_ACCOUNTIDS`.
-2. Set the Conformity filters you want to run the tests against. Eg `CC_FILTER_CATERGORY=Security`, `CC_FILTER_TAGS=Build::1jh12asd6d`
+2. Export the Conformity filters you want to run the tests against. Eg `CC_FILTER_CATERGORY=Security`, `CC_FILTER_TAGS=Build::1jh12asd6d`
 3. Optionally configure the acceptable failure limits per severity basis by setting the following environment variables. `MAX_TOTAL`, `MAX_EXTREME`, `MAX_VERY_HIGH`, `MAX_HIGH`, `MAX_MEDIUM`, `MAX_LOW`. All of these default to "0".
 4. Run pytest
 
