@@ -11,8 +11,10 @@ CC_ACCOUNTIDS = os.environ["CC_ACCOUNTIDS"]
 CC_FILTER_CATEGORIES = os.environ.get("CC_FILTER_CATEGORIES", "")
 CC_FILTER_COMPLIANCES = os.environ.get("CC_FILTER_COMPLIANCES", "")
 CC_FILTER_CREATEDLESSTHAN = os.environ.get("CC_FILTER_CREATEDLESSTHAN", "")
+CC_FILTER_CREATEDMORETHAN = os.environ.get("CC_FILTER_CREATEDMORETHAN", "")
 CC_FILTER_REGIONS = os.environ.get("CC_FILTER_REGIONS", "")
 CC_FILTER_RISKLEVELS = os.environ.get("CC_FILTER_RISKLEVELS", "")
+CC_FILTER_RULEIDS = os.environ.get("CC_FILTER_RULEIDS", "")
 CC_FILTER_SERVICES = os.environ.get("CC_FILTER_SERVICES", "")
 CC_FILTER_TAGS = os.environ.get("CC_FILTER_TAGS", "")
 
@@ -35,10 +37,14 @@ url = (
     + CC_FILTER_COMPLIANCES
     + "&filter[createdLessThanDays]="
     + CC_FILTER_CREATEDLESSTHAN
+    + "&filter[createdMoreThanDays]="
+    + CC_FILTER_CREATEDMORETHAN
     + "&filter[regions]="
     + CC_FILTER_REGIONS
     + "&filter[riskLevels]="
     + CC_FILTER_RISKLEVELS
+    + "&filter[ruleIds]="
+    + CC_FILTER_RULEIDS
     + "&filter[services]="
     + CC_FILTER_SERVICES
     + "&filter[tags]="
