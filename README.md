@@ -15,7 +15,7 @@ pip3 install -r requirements.txt
 3. Optionally configure the acceptable failure limits per severity basis by setting the following environment variables. `MAX_TOTAL`, `MAX_EXTREME`, `MAX_VERY_HIGH`, `MAX_HIGH`, `MAX_MEDIUM`, `MAX_LOW`. All of these default to "0".
 4. Run pytest
 
-## Full List of filters Conformity filters available in script:
+## Full list of Conformity filters available in script:
 `CC_FILTER_CATEGORIES`,
 `CC_FILTER_COMPLIANCES`,
 `CC_FILTER_CREATEDLESSTHAN`,
