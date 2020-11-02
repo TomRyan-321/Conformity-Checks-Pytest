@@ -1,4 +1,4 @@
-# Conformity-Checks-PyTest
+# Conformity-Checks-Pytest
 A simple set of tests to check the number of failures returned from cloud conformity checks API. Intended to be used as part of a CICD pipeline to verify the number of failures introduced after a build has been deployed.
 
 ## Installation
