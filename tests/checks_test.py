@@ -7,6 +7,10 @@ CC_REGION = os.environ.get("CC_REGION", "us-west-2")
 CC_APIKEY = os.environ["CC_APIKEY"]
 CC_ACCOUNTIDS = os.environ["CC_ACCOUNTIDS"]
 
+# Pagination variables (paging support not yet added)
+CC_PAGESIZE = int(os.environ.get("CC_PAGESIZE", 1000))
+CC_PAGENUMBER = int(os.environ.get("CC_PAGENUMBER", 0))
+
 # Checks API Filters
 CC_FILTER_CATEGORIES = os.environ.get("CC_FILTER_CATEGORIES", "")
 CC_FILTER_COMPLIANCES = os.environ.get("CC_FILTER_COMPLIANCES", "")
@@ -16,6 +20,7 @@ CC_FILTER_REGIONS = os.environ.get("CC_FILTER_REGIONS", "")
 CC_FILTER_RISKLEVELS = os.environ.get("CC_FILTER_RISKLEVELS", "")
 CC_FILTER_RULEIDS = os.environ.get("CC_FILTER_RULEIDS", "")
 CC_FILTER_SERVICES = os.environ.get("CC_FILTER_SERVICES", "")
+CC_FILTER_STATUSES = os.environ.get("CC_FILTER_STATUSES", "FAILURE")
 CC_FILTER_TAGS = os.environ.get("CC_FILTER_TAGS", "")
 
 # Limits allowed before failing tests
@@ -26,39 +31,30 @@ MAX_HIGH = int(os.environ.get("MAX_HIGH", 0))
 MAX_MEDIUM = int(os.environ.get("MAX_MEDIUM", 0))
 MAX_LOW = int(os.environ.get("MAX_LOW", 0))
 
-url = (
-    "https://"
-    + CC_REGION
-    + "-api.cloudconformity.com/v1/checks?accountIds="
-    + CC_ACCOUNTIDS
-    + "&filter[categories]="
-    + CC_FILTER_CATEGORIES
-    + "&filter[compliances]="
-    + CC_FILTER_COMPLIANCES
-    + "&filter[createdLessThanDays]="
-    + CC_FILTER_CREATEDLESSTHAN
-    + "&filter[createdMoreThanDays]="
-    + CC_FILTER_CREATEDMORETHAN
-    + "&filter[regions]="
-    + CC_FILTER_REGIONS
-    + "&filter[riskLevels]="
-    + CC_FILTER_RISKLEVELS
-    + "&filter[ruleIds]="
-    + CC_FILTER_RULEIDS
-    + "&filter[services]="
-    + CC_FILTER_SERVICES
-    + "&filter[tags]="
-    + CC_FILTER_TAGS
-    + "&filter[statuses]=FAILURE"
-    + "&page[size]=1000"
-)
+url = "https://" + CC_REGION + "-api.cloudconformity.com/v1/checks"
+
+params = {
+    "accountIds": CC_ACCOUNTIDS,
+    "filter[categories]": CC_FILTER_CATEGORIES,
+    "filter[compliances]": CC_FILTER_COMPLIANCES,
+    "filter[createdLessThanDays]": CC_FILTER_CREATEDLESSTHAN,
+    "filter[createdMoreThanDays]": CC_FILTER_CREATEDMORETHAN,
+    "filter[regions]": CC_FILTER_REGIONS,
+    "filter[riskLevels]": CC_FILTER_RISKLEVELS,
+    "filter[ruleIds]": CC_FILTER_RULEIDS,
+    "filter[services]": CC_FILTER_SERVICES,
+    "filter[tags]": CC_FILTER_TAGS,
+    "filter[statuses]": CC_FILTER_STATUSES,
+    "page[size]": CC_PAGESIZE,
+    "page[number]": CC_PAGENUMBER,
+}
 
 payload = {}
 headers = {
     "Content-Type": "application/vnd.api+json",
     "Authorization": "ApiKey " + CC_APIKEY,
 }
-response = requests.get(url, headers=headers, data=payload)
+response = requests.get(url, params=params, headers=headers, data=payload)
 response_json = response.json()
 
 
