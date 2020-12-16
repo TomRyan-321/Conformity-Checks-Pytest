@@ -7,7 +7,7 @@ CC_REGION = os.environ.get("CC_REGION", "us-west-2")
 CC_APIKEY = os.environ["CC_APIKEY"]
 CC_ACCOUNTIDS = os.environ["CC_ACCOUNTIDS"]
 
-# Pagination variables (paging support not yet added)
+# Pagination variables
 CC_PAGESIZE = int(os.environ.get("CC_PAGESIZE", 1000))
 CC_PAGENUMBER = int(os.environ.get("CC_PAGENUMBER", 0))
 
@@ -54,16 +54,29 @@ headers = {
     "Content-Type": "application/vnd.api+json",
     "Authorization": "ApiKey " + CC_APIKEY,
 }
-response = requests.get(url, params=params, headers=headers, data=payload)
-response_json = response.json()
+
+session = requests.session()
 
 
-def test_api_status_code_equals_200():
-    assert response.status_code == 200
+def get_account_checks():
+    combined = []
+    counter = 0
+    max_results = 1
+    while counter <= max_results:
+        page = session.get(url, params=params, headers=headers, data=payload).json()
+        max_results = page["meta"]["total"]
+        counter += CC_PAGESIZE
+        params["page[number]"] += 1
+        data = page["data"]
+        combined += data
+    return {"data": combined, "total": max_results}
+
+
+response_json = get_account_checks()
 
 
 def test_total_failures_exceed_limit():
-    assert response_json["meta"]["total"] <= MAX_TOTAL
+    assert int(response_json["total"]) <= MAX_TOTAL
 
 
 def test_extreme_failures_exceed_limit():
