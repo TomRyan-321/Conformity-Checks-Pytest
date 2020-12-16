@@ -69,14 +69,14 @@ def get_account_checks():
         params["page[number]"] += 1
         data = page["data"]
         combined += data
-    return {"data": combined, "total": max_results}
+    return {"data": combined, "meta": page["meta"]}
 
 
 response_json = get_account_checks()
 
 
 def test_total_failures_exceed_limit():
-    assert int(response_json["total"]) <= MAX_TOTAL
+    assert int(response_json["meta"]["total"]) <= MAX_TOTAL
 
 
 def test_extreme_failures_exceed_limit():
