@@ -16,7 +16,10 @@ CC_FILTER_CATEGORIES = os.environ.get("CC_FILTER_CATEGORIES", "")
 CC_FILTER_COMPLIANCES = os.environ.get("CC_FILTER_COMPLIANCES", "")
 CC_FILTER_CREATEDLESSTHAN = os.environ.get("CC_FILTER_CREATEDLESSTHAN", "")
 CC_FILTER_CREATEDMORETHAN = os.environ.get("CC_FILTER_CREATEDMORETHAN", "")
+CC_FILTER_NEWERTHANDAYS = os.environ.get("CC_FILTER_NEWERTHANDAYS", "")
+CC_FILTER_OLDERTHANDAYS = os.environ.get("CC_FILTER_OLDERTHANDAYS", "")
 CC_FILTER_REGIONS = os.environ.get("CC_FILTER_REGIONS", "")
+CC_FILTER_RESOURCE = os.environ.get("CC_FILTER_RESOURCE", "")
 CC_FILTER_RISKLEVELS = os.environ.get("CC_FILTER_RISKLEVELS", "")
 CC_FILTER_RULEIDS = os.environ.get("CC_FILTER_RULEIDS", "")
 CC_FILTER_SERVICES = os.environ.get("CC_FILTER_SERVICES", "")
@@ -39,7 +42,10 @@ params = {
     "filter[compliances]": CC_FILTER_COMPLIANCES,
     "filter[createdLessThanDays]": CC_FILTER_CREATEDLESSTHAN,
     "filter[createdMoreThanDays]": CC_FILTER_CREATEDMORETHAN,
+    "filter[newerThanDays]": CC_FILTER_NEWERTHANDAYS,
+    "filter[olderThanDays]": CC_FILTER_OLDERTHANDAYS,
     "filter[regions]": CC_FILTER_REGIONS,
+    "filter[resource]": CC_FILTER_RESOURCE,
     "filter[riskLevels]": CC_FILTER_RISKLEVELS,
     "filter[ruleIds]": CC_FILTER_RULEIDS,
     "filter[services]": CC_FILTER_SERVICES,
